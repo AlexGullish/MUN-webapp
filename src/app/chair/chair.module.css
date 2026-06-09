@@ -1,0 +1,226 @@
+.chairWrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.panelGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .panelGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sectionCard {
+  padding: 1.5rem;
+  border: 1px solid var(--color-neutral-200);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-neutral-200);
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resRow {
+  background: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color 0.15s ease;
+}
+.resRow:hover {
+  border-color: var(--color-neutral-400);
+}
+
+.resInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.resTitle {
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  font-size: 0.95rem;
+}
+
+.resDetails {
+  font-size: 0.8rem;
+  color: var(--color-neutral-500);
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.amendmentCard {
+  background: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.amendmentCard:hover {
+  border-color: var(--color-neutral-300);
+}
+
+.amendmentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amendmentText {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-neutral-800);
+  background: var(--color-neutral-50);
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-primary);
+}
+
+.tabsBar {
+  display: flex;
+  border-bottom: 1px solid var(--color-neutral-200);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  color: var(--color-neutral-600);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tabBtn:hover {
+  color: var(--color-neutral-900);
+}
+
+.activeTabBtn {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-neutral-600);
+  border-bottom: 1px solid var(--color-neutral-200);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-neutral-50);
+}
+
+.table td {
+  padding: 0.85rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--color-neutral-800);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.table tbody tr:hover {
+  background: var(--color-neutral-50);
+}
+
+.errorCard {
+  max-width: 600px;
+  margin: 8rem auto;
+  text-align: center;
+  padding: 2.5rem;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+}
+
+.errorCard h2 {
+  margin-bottom: 0.75rem;
+}
+
+.errorCard p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pageTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  letter-spacing: -0.02em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.pageSubtitle {
+  color: var(--color-neutral-600);
+  font-size: 0.95rem;
+}

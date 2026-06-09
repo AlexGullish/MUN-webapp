@@ -1,0 +1,217 @@
+.adminWrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pageTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  letter-spacing: -0.02em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.pageSubtitle {
+  color: var(--color-neutral-600);
+  font-size: 0.95rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  padding: 1rem;
+  border: 1px solid var(--color-neutral-200);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.statCard--primary .statValue { color: var(--color-primary); }
+.statCard--success .statValue { color: var(--color-success); }
+.statCard--warning .statValue { color: var(--color-warning); }
+.statCard--muted .statValue { color: var(--color-neutral-500); }
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--color-neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  font-family: var(--font-display);
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  font-family: var(--font-display);
+}
+
+.sectionCard {
+  padding: 1.5rem;
+  border: 1px solid var(--color-neutral-200);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionHeader {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tabsBar {
+  display: flex;
+  border-bottom: 1px solid var(--color-neutral-200);
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  color: var(--color-neutral-600);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.7rem 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tabBtn:hover {
+  color: var(--color-neutral-900);
+}
+
+.activeTabBtn {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.csvUploadArea {
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--color-neutral-50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transition: border-color 0.15s ease;
+  cursor: pointer;
+}
+.csvUploadArea:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.userRow {
+  background: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.15s ease;
+  gap: 1rem;
+}
+
+.userRow:hover {
+  border-color: var(--color-neutral-400);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-neutral-600);
+  border-bottom: 1px solid var(--color-neutral-200);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-neutral-50);
+}
+
+.table td {
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-neutral-800);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.table tbody tr:hover {
+  background: var(--color-neutral-50);
+}

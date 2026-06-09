@@ -1,0 +1,241 @@
+.committeeWrapper {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pageHeader {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  color: var(--color-neutral-600);
+  font-size: 0.95rem;
+}
+
+.committeeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+}
+
+.committeeCard {
+  padding: 1.25rem;
+  border: 1px solid var(--color-neutral-200);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.committeeCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-neutral-300);
+}
+
+.committeeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.committeeName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin-bottom: 0.2rem;
+}
+
+.committeeId {
+  color: var(--color-neutral-500);
+  font-size: 0.85rem;
+  font-family: var(--font-display);
+}
+
+.roomInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  background: var(--color-primary-light);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  border: 1px solid var(--color-primary-border);
+  font-family: var(--font-display);
+}
+
+.delegateCount {
+  color: var(--color-neutral-500);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.chairInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.chairAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-200);
+}
+
+.chairLabel {
+  font-size: 0.7rem;
+  color: var(--color-neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.chairName {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-neutral-800);
+}
+
+.singleCommittee {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .singleCommittee {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoSection {
+  padding: 1.5rem;
+  border: 1px solid var(--color-neutral-200);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.delegateList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.delegateItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-50);
+}
+
+.delegateAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-neutral-600);
+}
+
+.delegateName {
+  font-weight: 500;
+  color: var(--color-neutral-800);
+}
+
+.delegateCountry {
+  font-size: 0.8rem;
+  color: var(--color-neutral-500);
+}
+
+.delegateSchool {
+  font-size: 0.8rem;
+  color: var(--color-neutral-500);
+}
+
+.roomBlock {
+  margin-bottom: 1.5rem;
+}
+
+.roomLabel {
+  font-size: 0.78rem;
+  color: var(--color-neutral-500);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  font-family: var(--font-display);
+}
+
+.roomNumber {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.chairEmail {
+  font-size: 0.8rem;
+  color: var(--color-neutral-500);
+}
+
+.delegateCountBig {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.noCommittees {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-neutral-500);
+  grid-column: 1 / -1;
+}
+.noCommittees h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-neutral-700);
+  font-size: 1.1rem;
+}
+
+.noDelegates {
+  color: var(--color-neutral-500);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}

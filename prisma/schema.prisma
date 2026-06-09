@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// Users
+model User {
+  id           String      @id @default(uuid())
+  name         String
+  email        String      @unique
+  loginCode    String      @unique // secure unique access code like MUN-XXXX-XXXX
+  school       String
+  country      String
+  committeeId  String?
+  committee    Committee?  @relation(fields: [committeeId], references: [id], onDelete: SetNull)
+  role         String      // "DELEGATE" | "CHAIR" | "ADMIN"
+  allergies    String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  // Relations
+  uploadedResolutions Resolution[] @relation("UploadedResolutions")
+  amendments          Amendment[]
+  reviewedAmendments  Amendment[]  @relation("ReviewedAmendments")
+  chairedCommittees   Committee[]  @relation("ChairedCommittee")
+}
+
+// Committees
+model Committee {
+  id           String       @id @default(uuid())
+  name         String       @unique
+  roomNumber   String
+  chairUserId  String?
+  chairUser    User?        @relation("ChairedCommittee", fields: [chairUserId], references: [id], onDelete: SetNull)
+
+  // Relations
+  users        User[]
+  resolutions  Resolution[]
+}
+
+// Resolutions
+model Resolution {
+  id                 String       @id @default(uuid())
+  title              String
+  topic              String
+  country            String
+  committeeId        String
+  committee          Committee    @relation(fields: [committeeId], references: [id], onDelete: Cascade)
+
+  originalDocxPath   String?      // Path to original DOCX
+  renderedHtml       String       // Mammoth parsed HTML text
+  pdfPath            String?      // Path to optional PDF
+
+  status             String       // "DRAFT" | "SUBMITTED" | "PUBLISHED"
+  
+  uploadedById       String
+  uploadedBy         User         @relation("UploadedResolutions", fields: [uploadedById], references: [id], onDelete: Cascade)
+  
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  // Relations
+  amendments         Amendment[]
+}
+
+// Amendments
+model Amendment {
+  id            String     @id @default(uuid())
+  resolutionId  String
+  resolution    Resolution @relation(fields: [resolutionId], references: [id], onDelete: Cascade)
+  
+  userId        String
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  text          String     // Proposed amendment text
+  description   String?    // Optional explanation
+
+  status        String     // "PENDING" | "APPROVED" | "REJECTED"
+
+  createdAt     DateTime   @default(now())
+  reviewedAt    DateTime?
+  reviewedById  String?
+  reviewedBy    User?      @relation("ReviewedAmendments", fields: [reviewedById], references: [id], onDelete: SetNull)
+}
