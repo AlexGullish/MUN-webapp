@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useActionState, useTransition, useRef, useEffect } from 'react';
+import React, { useState, useActionState, useTransition, useEffect } from 'react';
 import { createOrUpdateCommitteeAction, deleteCommitteeAction } from '../actions';
 import styles from './admin.module.css';
 
@@ -52,21 +52,20 @@ export default function CommitteeManager({ initialCommittees, chairs }: Committe
         <button
           onClick={() => { setEditing(null); setShowForm(!showForm); }}
           className={`btn ${showForm ? 'btn-secondary' : 'btn-primary'}`}
-          style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}
         >
           {showForm ? 'Cancel' : '+ Add Committee'}
         </button>
       </div>
 
       {showForm && (
-        <div className="glass-panel" style={{ padding: '1.75rem', marginBottom: '1.5rem', border: '1px solid var(--border-color-hover)' }}>
-          <h4 style={{ color: 'white', fontFamily: 'var(--font-display)', marginBottom: '1.25rem' }}>
+        <div className="card" style={{ padding: '1.75rem', marginBottom: '1.5rem' }}>
+          <h3 className="cardTitle" style={{ marginBottom: '1.25rem', paddingBottom: 0, borderBottom: 'none' }}>
             {editing ? `Editing: ${editing.name}` : 'Create New Committee'}
-          </h4>
+          </h3>
           <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {editing && <input type="hidden" name="committeeId" value={editing.id} />}
             {state?.error && (
-              <div style={{ background: 'rgba(244,63,94,0.1)', border: '1px solid rgba(244,63,94,0.2)', color: '#fda4af', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem' }}>
+              <div className="errorAlert">
                 {state.error}
               </div>
             )}
@@ -82,7 +81,7 @@ export default function CommitteeManager({ initialCommittees, chairs }: Committe
             </div>
             <div className="input-group" style={{ marginBottom: 0 }}>
               <label className="input-label">Assigned Chair (optional)</label>
-              <select name="chairUserId" defaultValue={editing?.chairUserId || ''} className="input-field" style={{ background: 'rgba(0,0,0,0.25)', height: '45px' }}>
+              <select name="chairUserId" defaultValue={editing?.chairUserId || ''} className="select-field">
                 <option value="">No Chair Assigned</option>
                 {chairs.map(c => (
                   <option key={c.id} value={c.id}>{c.name}</option>
@@ -98,11 +97,11 @@ export default function CommitteeManager({ initialCommittees, chairs }: Committe
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {committees.map(committee => (
-          <div key={committee.id} className={styles.userRow}>
+          <div key={committee.id} className={`${styles.userRow} committee-item`}>
             <div className={styles.userInfo}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{committee.name}</span>
-                <span className="badge badge-published" style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
+                <span className="font-semibold" style={{ fontSize: '0.95rem' }}>{committee.name}</span>
+                <span className="badge badge-published">
                   {committee.roomNumber}
                 </span>
               </div>
@@ -112,10 +111,10 @@ export default function CommitteeManager({ initialCommittees, chairs }: Committe
               </span>
             </div>
             <div className="flex-gap-2">
-              <button onClick={() => { setEditing(committee); setShowForm(true); }} className="btn btn-secondary" style={{ padding: '0.3rem 0.65rem', fontSize: '0.8rem' }}>
+              <button onClick={() => { setEditing(committee); setShowForm(true); }} className="btn btn-secondary" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
                 Edit
               </button>
-              <button onClick={() => handleDelete(committee.id)} disabled={deleteTransition} className="btn btn-danger" style={{ padding: '0.3rem 0.65rem', fontSize: '0.8rem', background: 'rgba(244,63,94,0.08)', border: '1px solid rgba(244,63,94,0.2)', color: '#fda4af' }}>
+              <button onClick={() => handleDelete(committee.id)} disabled={deleteTransition} className="btn btn-danger" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
                 Delete
               </button>
             </div>

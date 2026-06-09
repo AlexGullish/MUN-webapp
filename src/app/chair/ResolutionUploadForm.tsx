@@ -38,19 +38,8 @@ export default function ResolutionUploadForm({
   }, [state, selectedResolution, onCancelEdit]);
 
   return (
-    <div className="glass-panel" style={{ padding: '2rem' }}>
-      <h3
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.25rem',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          marginBottom: '1.25rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-        }}
-      >
+    <div className="card">
+      <h3 className="cardTitle" style={{ marginBottom: '1.25rem' }}>
         <svg
           width="18"
           height="18"
@@ -74,31 +63,13 @@ export default function ResolutionUploadForm({
         )}
 
         {state?.error && (
-          <div
-            style={{
-              background: 'rgba(244, 63, 94, 0.1)',
-              border: '1px solid rgba(244, 63, 94, 0.2)',
-              color: '#fda4af',
-              padding: '0.75rem 1rem',
-              borderRadius: '6px',
-              fontSize: '0.85rem',
-            }}
-          >
+          <div className="errorAlert">
             {state.error}
           </div>
         )}
 
         {success && (
-          <div
-            style={{
-              background: 'rgba(16, 185, 129, 0.1)',
-              border: '1px solid rgba(16, 185, 129, 0.2)',
-              color: '#a7f3d0',
-              padding: '0.75rem 1rem',
-              borderRadius: '6px',
-              fontSize: '0.85rem',
-            }}
-          >
+          <div className="card" style={{ background: 'var(--color-success-light)', border: '1px solid var(--color-success-border)', color: 'var(--color-success)' }}>
             Resolution {selectedResolution ? 'updated' : 'uploaded'} successfully!
           </div>
         )}
@@ -148,41 +119,38 @@ export default function ResolutionUploadForm({
           />
         </div>
 
-        <div className="grid-cols-2">
-          {/* Status Selection */}
-          <div className="input-group" style={{ marginBottom: 0 }}>
-            <label htmlFor="status" className="input-label">
-              Resolution Status
-            </label>
-            <select
-              id="status"
-              name="status"
-              defaultValue={selectedResolution?.status || 'DRAFT'}
-              className="input-field"
-              style={{ background: 'var(--bg-surface)', height: '45px', cursor: 'pointer' }}
-            >
-              <option value="DRAFT">Draft</option>
-              <option value="SUBMITTED">Submitted</option>
-              <option value="PUBLISHED">Published</option>
-            </select>
-          </div>
+          <div className="grid-cols-2">
+            <div className="input-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="status" className="input-label">
+                Resolution Status
+              </label>
+              <select
+                id="status"
+                name="status"
+                defaultValue={selectedResolution?.status || 'DRAFT'}
+                className="select-field"
+              >
+                <option value="DRAFT">Draft</option>
+                <option value="SUBMITTED">Submitted</option>
+                <option value="PUBLISHED">Published</option>
+              </select>
+            </div>
 
-          {/* DOCX Upload */}
-          <div className="input-group" style={{ marginBottom: 0 }}>
-            <label htmlFor="docxFile" className="input-label">
-              {selectedResolution ? 'Replace DOCX (Optional)' : 'DOCX Resolution File'}
-            </label>
-            <input
-              id="docxFile"
-              name="docxFile"
-              type="file"
-              accept=".docx"
-              required={!selectedResolution}
-              className="input-field"
-              style={{ padding: '0.55rem', cursor: 'pointer' }}
-            />
+            <div className="input-group" style={{ marginBottom: 0 }}>
+              <label htmlFor="docxFile" className="input-label">
+                {selectedResolution ? 'Replace DOCX (Optional)' : 'DOCX Resolution File'}
+              </label>
+              <input
+                id="docxFile"
+                name="docxFile"
+                type="file"
+                accept=".docx"
+                required={!selectedResolution}
+                className="input-field"
+                style={{ padding: '0.5rem', cursor: 'pointer' }}
+              />
+            </div>
           </div>
-        </div>
 
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
           {selectedResolution && (

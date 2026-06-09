@@ -90,7 +90,7 @@ export default async function ResolutionsPage({ searchParams }: ResolutionsPageP
           {resolutions.length > 0 ? (
             resolutions.map((res) => (
               <Link href={`/resolution/${res.id}`} key={res.id}>
-                <div className={`${styles.resCard} glass-panel`}>
+                <div className={styles.resCard}>
                   <div className={styles.resHeader}>
                     <span className={styles.resTitle}>{res.title}</span>
                     <span

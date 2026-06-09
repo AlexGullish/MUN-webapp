@@ -69,22 +69,21 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
         <button
           onClick={() => { setEditing(null); setShowForm(!showForm); }}
           className={`btn ${showForm ? 'btn-secondary' : 'btn-primary'}`}
-          style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}
         >
           {showForm ? 'Cancel' : '+ Add New User'}
         </button>
       </div>
 
       {showForm && (
-        <div className="glass-panel" style={{ padding: '1.75rem', marginBottom: '1.5rem', border: '1px solid var(--border-color-hover)' }}>
-          <h4 style={{ color: 'white', fontFamily: 'var(--font-display)', marginBottom: '1.25rem' }}>
+        <div className="card" style={{ padding: '1.75rem', marginBottom: '1.5rem' }}>
+          <h3 className="cardTitle" style={{ marginBottom: '1.25rem', paddingBottom: 0, borderBottom: 'none' }}>
             {editing ? `Editing: ${editing.name}` : 'Create New Account'}
-          </h4>
+          </h3>
           <form action={formAction} ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {editing && <input type="hidden" name="userId" value={editing.id} />}
 
             {state?.error && (
-              <div style={{ background: 'rgba(244,63,94,0.1)', border: '1px solid rgba(244,63,94,0.2)', color: '#fda4af', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem' }}>
+              <div className="errorAlert">
                 {state.error}
               </div>
             )}
@@ -102,7 +101,7 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
             <div className="grid-cols-2">
               <div className="input-group" style={{ marginBottom: 0 }}>
                 <label className="input-label">Role</label>
-                <select name="role" defaultValue={editing?.role || 'DELEGATE'} className="input-field" style={{ background: 'rgba(0,0,0,0.25)', height: '45px' }}>
+                <select name="role" defaultValue={editing?.role || 'DELEGATE'} className="select-field">
                   <option value="DELEGATE">Delegate</option>
                   <option value="CHAIR">Chair</option>
                   <option value="ADMIN">Admin</option>
@@ -110,7 +109,7 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
               </div>
               <div className="input-group" style={{ marginBottom: 0 }}>
                 <label className="input-label">Committee (optional)</label>
-                <select name="committeeId" defaultValue={editing?.committeeId || ''} className="input-field" style={{ background: 'rgba(0,0,0,0.25)', height: '45px' }}>
+                <select name="committeeId" defaultValue={editing?.committeeId || ''} className="select-field">
                   <option value="">No Committee</option>
                   {committees.map(c => (
                     <option key={c.id} value={c.id}>{c.name}</option>
@@ -151,8 +150,8 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
           <div key={user.id} className={styles.userRow}>
             <div className={styles.userInfo}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{user.name}</span>
-                <span className={`badge ${roleColors[user.role] || 'badge-draft'}`} style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
+                <span className="font-semibold" style={{ fontSize: '0.95rem' }}>{user.name}</span>
+                <span className={`badge ${roleColors[user.role] || 'badge-draft'}`}>
                   {user.role}
                 </span>
               </div>
@@ -160,10 +159,10 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
               <span className={styles.userCode}>{user.loginCode}</span>
             </div>
             <div className="flex-gap-2">
-              <button onClick={() => handleEdit(user)} className="btn btn-secondary" style={{ padding: '0.3rem 0.65rem', fontSize: '0.8rem' }}>
+              <button onClick={() => handleEdit(user)} className="btn btn-secondary" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
                 Edit
               </button>
-              <button onClick={() => handleDelete(user.id)} disabled={deleteTransition} className="btn btn-danger" style={{ padding: '0.3rem 0.65rem', fontSize: '0.8rem', background: 'rgba(244,63,94,0.08)', border: '1px solid rgba(244,63,94,0.2)', color: '#fda4af' }}>
+              <button onClick={() => handleDelete(user.id)} disabled={deleteTransition} className="btn btn-danger" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
                 Delete
               </button>
             </div>

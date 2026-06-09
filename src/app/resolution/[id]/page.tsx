@@ -53,11 +53,10 @@ export default async function ResolutionDetailPage({ params }: ResolutionDetailP
   const isDelegateInCommittee = session.role === 'DELEGATE' && session.committeeId === resolution.committeeId;
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-base)' }}>
+    <div className="animate-fade-in">
       <Navbar user={session} />
 
       <main className={styles.pageContainer}>
-        {/* Back Link */}
         <Link href="/resolutions" className={styles.backBtn}>
           <svg
             width="16"
@@ -74,17 +73,13 @@ export default async function ResolutionDetailPage({ params }: ResolutionDetailP
           <span>Back to Directory</span>
         </Link>
 
-        {/* Layout */}
         <div className={styles.mainLayout}>
-          {/* Left Side: Resolution Text Render */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
-            {/* HTML rendered docx */}
+          <div className={styles.contentColumn}>
             <div
               className="resolution-content animate-fade-in"
               dangerouslySetInnerHTML={{ __html: resolution.renderedHtml }}
             />
 
-            {/* Submit Amendment Form (Only if delegate in same committee) */}
             {isDelegateInCommittee && (
               <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 <AmendmentForm resolutionId={resolution.id} />
@@ -92,10 +87,8 @@ export default async function ResolutionDetailPage({ params }: ResolutionDetailP
             )}
           </div>
 
-          {/* Right Side: Metadata & Amendments list */}
           <div className={styles.sidebar}>
-            {/* Resolution Metadata Card */}
-            <div className={`${styles.metaCard} glass-panel`}>
+            <div className={styles.metaCard}>
               <h3 className={styles.metaTitle}>Resolution Details</h3>
               <div className={styles.metaList}>
                 <div className={styles.metaItem}>

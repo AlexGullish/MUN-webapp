@@ -29,7 +29,7 @@ export default function ResolutionFilters({ committees, showStatusFilter }: Reso
   };
 
   return (
-    <div className={`${styles.filterBar} glass-panel`}>
+    <div className={styles.filterBar}>
       {/* Search Input */}
       <div className={`${styles.filterGroup} ${styles.searchGroup}`}>
         <label htmlFor="search" className="input-label">Search Resolutions</label>

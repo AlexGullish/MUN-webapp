@@ -35,16 +35,7 @@ export default function ResolutionsList({ resolutions, onEditSelect }: Resolutio
 
   if (resolutions.length === 0) {
     return (
-      <div
-        style={{
-          textAlign: 'center',
-          padding: '2.5rem',
-          color: 'var(--text-secondary)',
-          background: 'rgba(255, 255, 255, 0.01)',
-          border: '1px dashed var(--border-color)',
-          borderRadius: '8px',
-        }}
-      >
+      <div className={styles.noData}>
         No resolutions uploaded yet. Use the upload panel to submit your first resolution.
       </div>
     );
@@ -83,20 +74,14 @@ export default function ResolutionsList({ resolutions, onEditSelect }: Resolutio
             >
               Edit
             </button>
-            <button
-              onClick={() => handleDelete(res.id)}
-              disabled={isPending}
-              className="btn btn-danger"
-              style={{
-                padding: '0.35rem 0.75rem',
-                fontSize: '0.8rem',
-                background: 'rgba(244, 63, 94, 0.1)',
-                border: '1px solid rgba(244, 63, 94, 0.2)',
-                color: '#fda4af',
-              }}
-            >
-              Delete
-            </button>
+              <button
+                onClick={() => handleDelete(res.id)}
+                disabled={isPending}
+                className="btn btn-danger"
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}
+              >
+                Delete
+              </button>
           </div>
         </div>
       ))}

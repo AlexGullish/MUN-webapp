@@ -224,3 +224,19 @@
   color: var(--color-neutral-600);
   font-size: 0.95rem;
 }
+
+.uploadColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.noData {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--color-neutral-600);
+  border: 1px dashed var(--color-neutral-300);
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-50);
+  font-size: 0.9rem;
+}
