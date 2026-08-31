@@ -17,7 +17,8 @@ async function main() {
   console.log('Seeding administrative and staff accounts...');
   
   // 1. Create Admin
-  const admin = await prisma.user.create({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _admin = await prisma.user.create({
     data: {
       name: 'Secretariat Admin',
       email: 'admin@mun.org',
@@ -131,7 +132,8 @@ async function main() {
     },
   });
 
-  const delRussia = await prisma.user.create({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _delRussia = await prisma.user.create({
     data: {
       name: 'Elena Rostova',
       email: 'elena.r@mun.org',
@@ -143,7 +145,8 @@ async function main() {
     },
   });
 
-  const delEgypt = await prisma.user.create({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _delEgypt = await prisma.user.create({
     data: {
       name: 'Salim Al-Jamil',
       email: 'salim.j@mun.org',
@@ -218,7 +221,8 @@ async function main() {
     },
   });
 
-  const res2 = await prisma.resolution.create({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _res2 = await prisma.resolution.create({
     data: {
       title: 'Resolution WHO/2026/109',
       topic: 'Standardizing pandemic response protocols in developing nations',
@@ -230,7 +234,8 @@ async function main() {
     },
   });
 
-  const res3 = await prisma.resolution.create({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _res3 = await prisma.resolution.create({
     data: {
       title: 'Resolution DISEC/2026/052',
       topic: 'Regulating artificial intelligence in autonomous weapons systems',

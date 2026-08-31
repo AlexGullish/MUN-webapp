@@ -178,7 +178,7 @@ export async function uploadResolutionAction(
     }
     
     if (resolutionId) {
-      const updateData: any = {
+      const updateData: Record<string, unknown> = {
         title: title.trim(),
         topic: topic.trim(),
         country: country.trim(),
@@ -214,9 +214,9 @@ export async function uploadResolutionAction(
     revalidatePath(session.role === 'CHAIR' ? '/chair' : '/admin');
     revalidatePath('/resolutions');
     return { success: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Resolution upload database error:', err);
-    return { error: err.message || 'Failed to upload/update resolution due to error.' };
+    return { error: err instanceof Error ? err.message : 'Failed to upload/update resolution due to error.' };
   }
 }
 
@@ -375,9 +375,9 @@ export async function createOrUpdateUserAction(
     
     revalidatePath('/admin');
     return { success: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('User CRUD error:', err);
-    return { error: err.message || 'Database error occurred while saving user.' };
+    return { error: err instanceof Error ? err.message : 'Database error occurred while saving user.' };
   }
 }
 
@@ -442,9 +442,9 @@ export async function createOrUpdateCommitteeAction(
     
     revalidatePath('/admin');
     return { success: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Committee CRUD error:', err);
-    return { error: err.message || 'Database error occurred while saving committee.' };
+    return { error: err instanceof Error ? err.message : 'Database error occurred while saving committee.' };
   }
 }
 
@@ -587,8 +587,8 @@ export async function importCsvAction(prevState: ImportResult | null, formData: 
     
     revalidatePath('/admin');
     return { success: true, importedCount, committeesCreated };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('CSV import error:', err);
-    return { error: err.message || 'An error occurred while parsing and importing CSV.' };
+    return { error: err instanceof Error ? err.message : 'An error occurred while parsing and importing CSV.' };
   }
 }

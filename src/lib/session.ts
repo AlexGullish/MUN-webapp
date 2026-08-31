@@ -18,7 +18,18 @@ async function getCryptoKey() {
 /**
  * Creates a base64 encoded and HMAC-SHA256 signed session token.
  */
-export async function signSession(payload: any): Promise<string> {
+export interface SessionPayload {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  committeeId?: string | null;
+  country: string;
+  school: string;
+  exp: number;
+}
+
+export async function signSession(payload: Omit<SessionPayload, 'exp'>): Promise<string> {
   const enc = new TextEncoder();
   const data = JSON.stringify({ ...payload, exp: Date.now() + 24 * 60 * 60 * 1000 }); // 24 Hours
   const key = await getCryptoKey();
@@ -32,7 +43,7 @@ export async function signSession(payload: any): Promise<string> {
 /**
  * Verifies and decodes a signed session token.
  */
-export async function verifySession(token: string): Promise<any | null> {
+export async function verifySession(token: string): Promise<SessionPayload | null> {
   try {
     const parts = token.split('.');
     if (parts.length !== 2) return null;
@@ -55,7 +66,7 @@ export async function verifySession(token: string): Promise<any | null> {
     if (payload.exp < Date.now()) return null; // Token expired
     
     return payload;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -69,7 +80,7 @@ export async function getSession() {
     const cookie = cookieStore.get(SESSION_COOKIE_NAME);
     if (!cookie) return null;
     return await verifySession(cookie.value);
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -77,7 +88,7 @@ export async function getSession() {
 /**
  * Serializes and sets secure HTTP-Only cookie.
  */
-export async function setSession(user: any) {
+export async function setSession(user: { id: string; name: string; email: string; role: string; committeeId?: string | null; country: string; school: string }) {
   const payload = {
     id: user.id,
     name: user.name,

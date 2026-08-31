@@ -34,7 +34,7 @@ export default async function ResolutionsPage({ searchParams }: ResolutionsPageP
   });
 
   // Construct Prisma filter query
-  const whereClause: any = {};
+  const whereClause: Record<string, unknown> = {};
 
   if (search) {
     whereClause.OR = [

@@ -26,7 +26,7 @@ export default function ResolutionsList({ resolutions, onEditSelect }: Resolutio
       startTransition(async () => {
         try {
           await deleteResolutionAction(id);
-        } catch (err) {
+        } catch {
           alert('Failed to delete resolution.');
         }
       });

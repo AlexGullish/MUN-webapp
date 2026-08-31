@@ -184,7 +184,7 @@ export default async function ResolutionDetailPage({ params }: ResolutionDetailP
                           {amendment.status}
                         </span>
                       </div>
-                      <p className={styles.amendmentText}>"{amendment.text}"</p>
+                       <p className={styles.amendmentText}>&ldquo;{amendment.text}&rdquo;</p>
                       {amendment.description && (
                         <p className={styles.amendmentExplanation}>
                           <strong>Rationale:</strong> {amendment.description}

@@ -13,6 +13,7 @@ export default function InteractiveMap({ roomNumber, uploadedMapPath }: Interact
   if (uploadedMapPath) {
     return (
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={uploadedMapPath}
           alt="School Conference Map"

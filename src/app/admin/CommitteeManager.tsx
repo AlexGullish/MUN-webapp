@@ -28,8 +28,6 @@ export default function CommitteeManager({ initialCommittees, chairs }: Committe
 
   useEffect(() => {
     if (state?.success) {
-      setShowForm(false);
-      setEditing(null);
       window.location.reload();
     }
   }, [state]);

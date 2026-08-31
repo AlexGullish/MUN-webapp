@@ -33,9 +33,6 @@ export default function UserManager({ initialUsers, committees }: UserManagerPro
 
   useEffect(() => {
     if (state?.success) {
-      setShowForm(false);
-      setEditing(null);
-      // Reload after success for fresh data
       window.location.reload();
     }
   }, [state]);

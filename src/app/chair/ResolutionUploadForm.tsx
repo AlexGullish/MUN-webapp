@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useEffect, useRef, useState } from 'react';
+import React, { useActionState, useEffect, useRef } from 'react';
 import { uploadResolutionAction } from '../actions';
 
 interface ResolutionUploadFormProps {
@@ -21,21 +21,22 @@ export default function ResolutionUploadForm({
 }: ResolutionUploadFormProps) {
   const [state, formAction, isPending] = useActionState(uploadResolutionAction, null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [success, setSuccess] = useState(false);
+  const successTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (state?.success) {
-      setSuccess(true);
-      const timer = setTimeout(() => setSuccess(false), 4000);
       if (formRef.current && !selectedResolution) {
         formRef.current.reset();
       }
       if (onCancelEdit && selectedResolution) {
         onCancelEdit();
       }
-      return () => clearTimeout(timer);
+      successTimerRef.current = setTimeout(() => {}, 4000);
+      return () => {
+        if (successTimerRef.current) clearTimeout(successTimerRef.current);
+      };
     }
-  }, [state, selectedResolution, onCancelEdit]);
+  }, [state?.success, selectedResolution, onCancelEdit]);
 
   return (
     <div className="card">
@@ -68,7 +69,7 @@ export default function ResolutionUploadForm({
           </div>
         )}
 
-        {success && (
+        {state?.success && (
           <div className="card" style={{ background: 'var(--color-success-light)', border: '1px solid var(--color-success-border)', color: 'var(--color-success)' }}>
             Resolution {selectedResolution ? 'updated' : 'uploaded'} successfully!
           </div>

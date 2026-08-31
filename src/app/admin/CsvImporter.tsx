@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useActionState, useRef, useEffect } from 'react';
-import { importCsvAction, ImportResult } from '../actions';
+import React, { useActionState, useRef } from 'react';
+import { importCsvAction } from '../actions';
 import styles from './admin.module.css';
 
 export default function CsvImporter() {

@@ -34,7 +34,7 @@ export default function AmendmentReviewer({ initialAmendments }: AmendmentReview
       try {
         await updateAmendmentStatusAction(id, status);
         setAmendments(amendments.filter((a) => a.id !== id));
-      } catch (err) {
+      } catch {
         alert('Failed to update amendment status. Please try again.');
       } finally {
         setActioningId(null);
@@ -69,7 +69,7 @@ export default function AmendmentReviewer({ initialAmendments }: AmendmentReview
               <span className="badge badge-pending">PENDING REVIEW</span>
             </div>
 
-            <p className={styles.amendmentText}>"{amendment.text}"</p>
+             <p className={styles.amendmentText}>&ldquo;{amendment.text}&rdquo;</p>
 
             {amendment.description && (
               <p className="text-muted" style={{ fontSize: '0.85rem', paddingLeft: '0.5rem' }}>

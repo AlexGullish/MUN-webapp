@@ -7,19 +7,48 @@ import CsvImporter from './CsvImporter';
 import styles from './admin.module.css';
 
 interface Props {
-  users: any[];
-  committees: any[];
-  chairs: any[];
-  resolutions: any[];
+  users: UserType[];
+  committees: CommitteeType[];
+  chairs: ChairOption[];
+  resolutions: ResolutionType[];
   pendingAmendments: number;
 }
 
-const statColors: Record<string, string> = {
-  Delegates: 'var(--color-primary)',
-  Chairs: 'var(--color-neutral-700)',
-  Committees: 'var(--color-success)',
-  'Pending Amendments': 'var(--color-warning)',
-};
+interface UserType {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  school: string;
+  country: string;
+  loginCode: string;
+  allergies?: string | null;
+  committeeId?: string | null;
+  committee?: { name: string } | null;
+}
+
+interface CommitteeType {
+  id: string;
+  name: string;
+  roomNumber: string;
+  chairUser?: { name: string } | null;
+  _count?: { users: number; resolutions: number };
+}
+
+interface ChairOption {
+  id: string;
+  name: string;
+}
+
+interface ResolutionType {
+  id: string;
+  title: string;
+  topic: string;
+  country: string;
+  status: string;
+  committee?: { name: string };
+  createdAt: Date;
+}
 
 export default function AdminConsole({ users, committees, chairs, resolutions, pendingAmendments }: Props) {
   const [activeTab, setActiveTab] = useState<'users' | 'committees' | 'resolutions' | 'import'>('users');
@@ -103,7 +132,7 @@ export default function AdminConsole({ users, committees, chairs, resolutions, p
                   </tr>
                 </thead>
                 <tbody>
-                  {resolutions.map((res: any) => (
+                  {resolutions.map((res: ResolutionType) => (
                     <tr key={res.id}>
                       <td>
                         <a href={`/resolution/${res.id}`} className="text-primary font-semibold" style={{ fontSize: '0.85rem' }}>{res.title}</a>
